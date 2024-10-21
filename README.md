@@ -5,7 +5,8 @@ Functional Requirements:
 
 - autonomous car must stop at the red lines (stop sign)
 - must pick up and drop off the end user to/from the colored zones
-- have multiple sensors to detect distance, color, contact (color, gyro, ultrasonic, touch) 
+- have multiple sensors to detect distance, color, contact (color, gyro, ultrasonic, touch)
+- create jaywalking feature to stop at anything crossing the maze 
 
 Design:
 
