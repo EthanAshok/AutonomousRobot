@@ -10,7 +10,7 @@ Functional Requirements:
 
 Design:
 
-Our design consists of a forklift to pick up passengers and it's bulit to fit perfectly under the hinges of the wheelchair rather than just hoping the passenger won't tip off a shovel type approach. By using an ultrasonic sensor, the car is always a minimum distance from the wall. We aim to prevent the robot from ever touching the walls by ensuring the robot turns as soonn as the minimum distance threshold is met. For extra caution, a touch sensor will be installed in the front which will cause the robot to "reset" by moving back slightly and then resuming function if it touches the wall. The design focuses on building up rather than out, which minimizes the chance that one of the robot's parts gets stuck while maneuvering around the maze. 
+Our design consists of a forklift to pick up passengers bulit to fit perfectly under the hinges of the wheelchair rather than just hoping the passenger won't tip off a shovel type approach. By using an ultrasonic sensor, the car is always a minimum distance from the wall. We aim to prevent the robot from ever touching the walls by ensuring the robot turns as soonn as the minimum distance threshold is met. For extra caution, a touch sensor will be installed in the front which will cause the robot to "reset" by moving back slightly and then resuming function if it touches the wall. The design focuses on building up rather than out, which minimizes the chance that one of the robot's parts gets stuck while maneuvering around the maze. 
 
 Matlab: 
 - 
