@@ -1,33 +1,74 @@
 global key
 global brick % assume brick has already been initialized with brick = ConnectBrick("8k")
 InitKeyboard();
-while 1
-    pause(0.1)
-    switch key
-        case 'w'
-            brick.MoveMotor('A', 50)
-            brick.MoveMotor('4', 50)
-        case 's'
-            brick.MoveMotor('1', -50)
-            brick.MoveMotor('4', -50)
-        case 'd'
-            brick.MoveMotor('1', 50)
-            brick.MoveMotor('4', -50)
-        case 'a'
-            brick.MoveMotor('1', -50)
-            brick.MoveMotor('4', 50)
-        case 'q' % kill switch
-            brick.MoveMotor('1', 0)
-            brick.MoveMotor('2', 0)
-            brick.MoveMotor('3', 0)
-            brick.MoveMotor('4', 0)
-            brick.MoveMotor('A', 0)
-            brick.MoveMotor('B', 0)
-            brick.MoveMotor('C', 0)
-            brick.MoveMotor('D', 0)
 
-            break;
+global driver_control_flag;
+global speed_multiplier;
+driver_control_flag = true;
+speed_multiplier = 1;
+
+function move(s) % moves forward with both motors at speed 100 * s
+    brick.MoveMotor(nos_l, 100*s)
+    brick.MoveMotor(nos_r, 100*s)
+end
+
+function turn(s)
+    brick.MoveMotor(nos_l, 100*s)
+    brick.MoveMotor(nos_r, 100*s)
+end
+
+global lift_flag;
+lift_flag = 1;
+function toggleLift(s)
+    brick.MoveMotorAngleRel(nos_lift, 100*s*-1*lift_flag, 1000);
+    lift_flag = lift_flag * -1;
+end
+
+function user_input(key)
+    switch key
+            case 'i'
+                switch (speed_multiplier)
+                    case 1
+                        speed_multiplier = 2;
+                    case 2
+                        speed_multiplier = 0.5;
+                    case 0.5
+                        speed_multiplier = 1;
+                end
+            case 'w'
+                move(speed_multiplier)
+            case 's'
+                move(-speed_multiplier)
+            case 'd'
+                turn(-speed_multiplier, 1)
+            case 'a'
+                turn(speed_multiplier, 1)
+            case 'e'
+                toggleLift(0.5)
+            case 'q' % kill switch
+                brick.StopAllMotors();
+                driver_control_flag = false;
+            otherwise
+                brick.StopAllMotors();
     end
 end
+
+function setup(l, r, lift)
+    global nos_l
+    global nos_r
+    global nos_lift
+    nos_l = l;
+    nos_r = r;
+    nos_lift = lift;
+
+    while 1
+        pause(0.1)
+        if (driver_control_flag)
+            driver_control()
+        end
+    end
+end
+
+setup('A', 'D', 'C');
 
 CloseKeyboard();
