@@ -2,7 +2,7 @@ global key
 global brick % assume brick has already been initialized with brick = ConnectBrick("8k")
 InitKeyboard();
 
-speed_mulltiplier = 1;
+speed_multiplier = 1;
 
 brick.MoveMotor('A', 0)
 brick.MoveMotor('B', 0)
@@ -12,9 +12,16 @@ while 1
     pause(0.1)
     switch key
         case 'i'
-            speed_multiplier = 2;
+            switch (speed_multiplier)
+                case 1
+                    speed_multiplier = 2;
+                case 2
+                    speed_multiplier = 0.5;
+                case 0.5
+                    speed_multiplier = 1;
+            end
         case 'w'
-            brick.MoveMotor('A', 50 * speed_mulltiplier)
+            brick.MoveMotor('A', 50 * speed_multiplier)
             brick.MoveMotor('D', 50 * speed_multiplier)
         case 's'
             brick.MoveMotor('A', -50 * speed_multiplier)
