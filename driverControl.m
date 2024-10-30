@@ -1,4 +1,4 @@
-function [s, flag] = driverControl(speedMultiplier, key, Drive, Lift)
+function [flag, s] = driverControl(speedMultiplier, key, Drive, Lift)
 %DriveRCONTROL Summary of this function goes here
 %   Detailed explanation goes here
     switch key
@@ -14,20 +14,26 @@ function [s, flag] = driverControl(speedMultiplier, key, Drive, Lift)
                         speedMultiplier = 0.5; 
                 end
                 s = speedMultiplier %#ok<NOPRT>
+                flag = 0;
+                return;
             case 'w'
-                Drive.move(Drive, speedMultiplier)
+                Drive.move(speedMultiplier)
             case 's'
-                Drive.move(Drive, -speedMultiplier)
+                Drive.move(-speedMultiplier)
             case 'd'
-                Drive.turn(Drive, -speedMultiplier)
+                Drive.turn(-speedMultiplier)
             case 'a'
-                Drive.turn(Drive, speedMultiplier)
+                Drive.turn(speedMultiplier)
             case 'e'
-                Lift.toggleLift(Lift, 0.5)
+                Lift.toggleLift( 0.5)
             case 'x'
                 flag = 1;
+                s = speedMultiplier;
+                return;
             otherwise
-                Drive.move(Drive, 0)
+                Drive.move(0)
     end
+    s = speedMultiplier;
+    flag = 0;
 end
 

@@ -14,7 +14,7 @@ classdef color
             obj.brick = brick;
             obj.nosColor = nosColor;
 
-            obj.brick.setColorMode(2, 2);
+            %obj.brick.setColorMode(2, 2);
         end
         color = getColor(obj)
     end
