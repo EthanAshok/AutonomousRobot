@@ -9,6 +9,16 @@ function flag = autonomous(Drive, Lift, Ultra, Color)
             pause(2)
             Drive.move(-.75)
             pause(.5)
+        case Color.atBlue()
+            flag = 0;
+            return;
+        case Color.atYellow()
+            flag = 0;
+            return;
+        case Color.atGreen()
+            flag = 0;
+            return;
+          
         case Ultra.atWall()
             Drive.move(0)
             pause(0.2)
