@@ -1,0 +1,33 @@
+function s = driverControl(speedMultiplier, key, drive, lift)
+%DRIVERCONTROL Summary of this function goes here
+%   Detailed explanation goes here
+    switch key
+            case 'i'
+                switch (speedMultiplier)
+                    case 1
+                        speedMultiplier = 2;
+                    case 2
+                        speedMultiplier = 0.5;
+                    case 0.5
+                        speedMultiplier = 1;
+                    otherwise
+                        speedMultiplier = 2;
+                end
+                display(speedMultiplier)
+            case 'w'
+                drive.move(drive, speedMultiplier)
+            case 's'
+                drive.move(drive, -speedMultiplier)
+            case 'd'
+                drive.turn(drive, -speedMultiplier)
+            case 'a'
+                drive.turn(drive, speedMultiplier)
+            case 'e'
+                lift.toggleLift(lift, 0.5)
+            case 'q' % kill switch
+                drive.move(drive, 0)
+            otherwise
+                drive.move(drive, 0)
+    end
+end
+
