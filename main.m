@@ -1,18 +1,22 @@
 global key
 InitKeyboard()
 
-Drive = drive(brick, 'A', 'D');
 Lift = lift(brick, 'B', 425);
-Ultra = ultrasonic(brick, 1, 30);
+Ultra = ultrasonic(brick, 1, 20);
 Color = color(brick, 2);
+Gyro = gyro(brick, 4);
+Drive = drive(brick, Gyro, 'A', 'D');
 
 speedMultiplier = 1;
 modeFlag = 0;
-brick.GyroCalibrate(3);
-wait(3)
+
 while true
     pause(0.1)
-    disp(brick.GyroAngle(3))
+    try
+        disp(Gyro.getDeg())
+    catch e
+    end
+
     switch key
         case 'q'
             Drive.move(0)

@@ -8,18 +8,20 @@ classdef drive
     
     properties
         brick
+        Gyro
         nosL
         nosR
     end
     
     methods
-        function obj = drive(brick, nosL, nosR)
+        function obj = drive(brick, Gyro, nosL, nosR)
             %DRIVE Construct an instance of this class
             %   INPUT
             %       brick (obj)    brick object
             %       nosL  (String) left motor port
             %       nosR  (String) right motor port
             obj.brick = brick;
+            obj.Gyro = Gyro;
             obj.nosL = nosL;
             obj.nosR = nosR;
         end
