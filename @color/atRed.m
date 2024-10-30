@@ -1,6 +1,5 @@
 function bool = atRed(obj)
-%ATRED Summary of this function goes here
-%   Detailed explanation goes here
+%Detects when robot hits red
 bool = (obj.getColor() == 5);
 end
 
