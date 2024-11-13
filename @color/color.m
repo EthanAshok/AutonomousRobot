@@ -17,6 +17,7 @@ classdef color
             %obj.brick.setColorMode(2, 2);
         end
         color = getColor(obj)
+        bool = atRed(s)
     end
 end
 

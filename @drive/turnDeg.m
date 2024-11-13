@@ -4,8 +4,17 @@ function turnDeg(obj, s, tdeg)
 %   INPUT
 %       obj (drive)    drive object
 %       s   (Numeric)  perecent of max speed to move, between -1 and 1
+%           turns right if s is positive
 %       deg (Numberic) amount of degrees to turn
 
+    
+    obj.brick.MoveMotorAngleRel(obj.nosL, 100*s, tdeg)
+    obj.brick.MoveMotorAngleRel(obj.nosR, 97*s * -1, tdeg)
+    %obj.brick.WaitForMotor(obj.nosL)
+    pause(.5)
+    obj.move(0)
+
+    return;
     tar = -1;
     pDeg = 0;
     deg = 0;
@@ -14,12 +23,16 @@ function turnDeg(obj, s, tdeg)
             pause(0.5)
             try
                 deg = obj.Gyro.getDeg();
-                tar = deg + tdeg;
-                if (tar > 360)
-                    tar = tar - 360;
+                if (s <= 0)
+                    tar = deg + tdeg;
+                else 
+                    tar = deg - tdeg;
                 end
-                disp(deg)
-                disp(tar)
+                %if (tar > 360)
+                %    tar = tar - 360;
+                %end
+                disp("ideg:" + deg)
+                disp("itar:" + tar)
                 disp("degunddar")
             catch e
                 disp(e)
@@ -29,17 +42,18 @@ function turnDeg(obj, s, tdeg)
 
     while (true)
         pause(0.1)
-        disp(deg)
-        disp(tar)
+        disp("Deg:" + deg)
+        disp("Tar:" + tar)
         try
             deg = obj.Gyro.getDeg();
-            pDeg = deg;
+            %pDeg = deg;
 
-            if (abs(deg) >= tar)
-                break
+            if (deg >= tar && s <= 0) || (deg <= tar && s > 0)
+                disp("done!")
+                break;
             end
         catch e
-            deg = pDeg;
+            %deg = pDeg;
             disp("err")
         end
         obj.turn(s)

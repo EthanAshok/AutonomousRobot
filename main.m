@@ -2,20 +2,19 @@ global key
 InitKeyboard()
 
 Lift = lift(brick, 'B', 425);
-Ultra = ultrasonic(brick, 1, 20);
-Color = color(brick, 2);
-Gyro = gyro(brick, 4);
-Drive = drive(brick, Gyro, 'A', 'D');
+Ultra = ultrasonic(brick, 2, 4);
+Color = color(brick, 3);
+%Gyro = gyro(brick, 4);
+Drive = drive(brick, 'A', 'D');
 
 speedMultiplier = 1;
 modeFlag = 0;
+tcolor = 4; %yellow = 4
+tMode = 1;
+history = ["move", "move", "move"];
 
 while true
     pause(0.1)
-    try
-        disp(Gyro.getDeg())
-    catch e
-    end
 
     switch key
         case 'q'
@@ -26,9 +25,12 @@ while true
                 case 0
                     [modeFlag, speedMultiplier] = driverControl(speedMultiplier, key, Drive, Lift);
                 case 1
-                    modeFlag = autonomous(Drive, Lift, Ultra, Color);
+                    [modeFlag, tMode, history] = autonomous(Drive, Lift, Ultra, Color, tcolor, tMode, history);
                 case 2
-                    Drive.move(Drive, 0)
+                    Drive.move( 0)
+                case 3
+                    Drive.turnDeg(.2, 250);
+                    pause(0.5)
             end
     end
 end

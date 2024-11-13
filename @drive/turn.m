@@ -6,6 +6,6 @@ function turn(obj,s)
 %       s  (Numeric) perecent of max speed to move, between -1 and 1
 
     obj.brick.MoveMotor(obj.nosL, 100*s*-1)
-    obj.brick.MoveMotor(obj.nosR, 97*s)
+    obj.brick.MoveMotor(obj.nosR, 93*s)
 end
 

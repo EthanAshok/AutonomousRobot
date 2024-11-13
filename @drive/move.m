@@ -5,6 +5,6 @@ function move(obj, s)
 %       obj(drive)   drive object
 %       s  (Numeric) perecent of max speed to move, between -1 and 1
 
-    obj.brick.MoveMotor(obj.nosL, 100 * s)
-    obj.brick.MoveMotor(obj.nosR, 97 * s)
+    obj.brick.MoveMotor(obj.nosL, 87 * -s)
+    obj.brick.MoveMotor(obj.nosR, 100 * -s)
 end
