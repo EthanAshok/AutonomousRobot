@@ -2,7 +2,7 @@ global key
 InitKeyboard()
 
 Lift = lift(brick, 'B', 425);
-Ultra = ultrasonic(brick, 2, 4);
+Ultra = ultrasonic(brick, 4, 20);
 Color = color(brick, 3);
 %Gyro = gyro(brick, 4);
 Drive = drive(brick, 'A', 'D');
@@ -29,8 +29,7 @@ while true
                 case 2
                     Drive.move( 0)
                 case 3
-                    Drive.turnDeg(.2, 250);
-                    pause(0.5)
+                    Drive.turnDeg(.5, 250)
             end
     end
 end
