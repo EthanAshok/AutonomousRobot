@@ -1,7 +1,7 @@
 global key
 InitKeyboard()
 
-Lift = lift(brick, 'B', 425);
+Lift = lift(brick, 'B', 300);
 Ultra = ultrasonic(brick, 4, 20);
 Color = color(brick, 3);
 %Gyro = gyro(brick, 4);
@@ -9,9 +9,13 @@ Drive = drive(brick, 'A', 'D');
 
 speedMultiplier = 1;
 modeFlag = 0;
-tcolor = 4; %yellow = 4
+tcolor = 3; %yellow = 4
 tMode = 1;
 history = ["move", "move", "move"];
+
+Ultra.getDist()
+Ultra.getDist()
+Ultra.getDist()
 
 while true
     pause(0.1)
