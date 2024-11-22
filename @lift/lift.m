@@ -15,8 +15,12 @@ classdef lift
             obj.brick = brick;
             obj.nosLift = nosLift;
             obj.liftDeg = liftDeg;
-
+        
+            obj.brick.MoveMotor(nosLift, -100)
+            pause(2)
+            obj.brick.MoveMotor(nosLift, 0)
             obj.tare();
+
         end
 
         tare(obj)

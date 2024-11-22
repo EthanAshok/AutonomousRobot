@@ -21,11 +21,11 @@ function [flag, s] = driverControl(speedMultiplier, key, Drive, Lift)
             case 's'
                 Drive.move(-speedMultiplier)
             case 'd'
-                Drive.turn(-speedMultiplier)
-            case 'a'
                 Drive.turn(speedMultiplier)
+            case 'a'
+                Drive.turn(-speedMultiplier)
             case 'e'
-                Lift.toggleLift( 0.5)
+                Lift.toggleLift(.25)
             case 'x'
                 flag = 1;
                 s = speedMultiplier;

@@ -9,7 +9,7 @@ function turnDeg(obj, s, tdeg)
 
     obj.brick.ResetMotorAngle(obj.nosL);
     obj.brick.MoveMotorAngleRel(obj.nosL, 100*s, tdeg)
-    obj.brick.MoveMotorAngleRel(obj.nosR, 97*s * -1, tdeg)
+    obj.brick.MoveMotorAngleRel(obj.nosR, 90*s * -1, tdeg)
     %obj.brick.WaitForMotor(obj.nosL)
     pause(2)
     obj.move(0)

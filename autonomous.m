@@ -17,24 +17,25 @@ function [flag, tMode, history] = autonomous(Drive, Lift, Ultra, Color, tcolor, 
            Drive.move(0)
            Drive.turnDeg(.5 * -tMode, 250)
            tMode = 1;
+           shiftHistory("turn");
 
         case Color.atBlue() || Color.atYellow() || Color.atGreen()
            color = Color.getColor();
            disp(color);
            if Color.atBlue()
                Drive.move(0);
-               Drive.brick.playTone(100, 100, 500);
-               pause(0.2)
-               Drive.brick.playTone(100, 100, 500);
-               pause(1)
+               %Drive.brick.playTone(100, 100, 100);
+               %pause(0.2)
+               %Drive.brick.playTone(100, 100, 100);
+               %pause(1)
            elseif Color.atGreen()
                Drive.move(0);
-               Drive.brick.playTone(100, 100, 500);
-               pause(0.2)
-               Drive.brick.playTone(100, 100, 500);
-               pause(0.2)
-               Drive.brick.playTone(100, 100, 500);
-               pause(1)
+               %Drive.brick.playTone(100, 100, 100);
+               %pause(0.2)
+               %Drive.brick.playTone(100, 100, 100);
+               %pause(0.2)
+               %Drive.brick.playTone(100, 100, 100);
+               %pause(1)
            end
            if color == tcolor
                flag = 0;
@@ -48,23 +49,33 @@ function [flag, tMode, history] = autonomous(Drive, Lift, Ultra, Color, tcolor, 
            return;
 
         case Ultra.atWall()
+            disp(" ")
+            disp(history(3))
+            disp(history(2))
+            disp(history(1))
+            disp(" ")
             Drive.move(0)
             pause(0.2)
             flag = 1;
             %tMode = tMode * -1;
-            disp(history(3))
-            if history(3) == "turn"
-                Drive.turnDeg(.5 * tMode * 1, 255)
-            end
 
-            Drive.turnDeg(.5 * tMode, 255)
-            if history(2) == "turn"
-                Drive.turnDeg(-.5 * tMode * 1, 255)
-                Drive.move(0)
-                Drive.move(.5)
-                pause(2.5)
-                Drive.turnDeg(.5 * tMode * 1, 255)
+            if (history(3) == "turn")
+                if history(2) == "turn"
+                    Drive.turnDeg(.5 * tMode * -1, 243)
+                    Drive.move(0)
+                    pause(0.1)
+                    Drive.move(.5)
+                    pause(2.5)
+                    Drive.turnDeg(.5 * tMode * 1, 255)
+                    history = ["drive", "drive", "turn"];
+                    return;
+                else
+                    Drive.turnDeg(.5 * tMode * 1, 255)
+                end
             end
+            
+            Drive.turnDeg(.5 * tMode, 255)
+
             shiftHistory("turn");
             Ultra.getDist()
             pause(.1)
@@ -77,7 +88,7 @@ function [flag, tMode, history] = autonomous(Drive, Lift, Ultra, Color, tcolor, 
 
             Drive.move(.5)
             if (history(3) ~= "move")
-                shiftHistory("move")
+                history = ["move", "move", "move"];
             end
     end
     flag = 1;
