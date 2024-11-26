@@ -1,6 +1,12 @@
-function [flag, tMode, history] = autonomous(Drive, Lift, Ultra, Color, tcolor, tMode, history)
-%AUTONOMOUS Summary of this function goes here
-%   Detailed explanation goes here
+function [flag, tMode, history] = autonomous(Drive, Ultra, Color, tColor, tMode, history)
+    %DRIVERCONTROL Controller for manual control of robot
+    %   Properties
+    %       Drive           (Obj)     Drive object
+    %       Lift            (Obj)     Lift object
+    %       Color
+    %       tColor
+    %       tMode
+    %       history
 
     function shiftHistory(action)
         history(1) = history(2);
@@ -17,6 +23,7 @@ function [flag, tMode, history] = autonomous(Drive, Lift, Ultra, Color, tcolor, 
            Drive.move(0)
            Drive.turnDeg(.5 * -tMode, 250)
            tMode = 1;
+           shiftHistory("turn");
 
         case Color.atBlue() || Color.atYellow() || Color.atGreen()
            color = Color.getColor();
@@ -36,7 +43,7 @@ function [flag, tMode, history] = autonomous(Drive, Lift, Ultra, Color, tcolor, 
                %Drive.brick.playTone(100, 100, 100);
                %pause(1)
            end
-           if color == tcolor
+           if color == tColor
                flag = 0;
                history = ["move", "move", "move"];
                return
@@ -57,20 +64,23 @@ function [flag, tMode, history] = autonomous(Drive, Lift, Ultra, Color, tcolor, 
             pause(0.2)
             flag = 1;
             %tMode = tMode * -1;
-            
-            Drive.turnDeg(.5 * tMode, 255)
 
-            if history(3) == "turn"
-                Drive.turnDeg(.5 * tMode * 1, 255)
-
+            if (history(3) == "turn")
                 if history(2) == "turn"
-                    Drive.turnDeg(.5 * tMode * 1, 255)
+                    Drive.turnDeg(.5 * tMode * -1, 243)
                     Drive.move(0)
+                    pause(0.1)
                     Drive.move(.5)
                     pause(2.5)
                     Drive.turnDeg(.5 * tMode * 1, 255)
+                    history = ["drive", "drive", "turn"];
+                    return;
+                else
+                    Drive.turnDeg(.5 * tMode * 1, 255)
                 end
             end
+            
+            Drive.turnDeg(.5 * tMode, 255)
 
             shiftHistory("turn");
             Ultra.getDist()

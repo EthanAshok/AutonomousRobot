@@ -1,6 +1,5 @@
 function dist = getDist(obj)
-%GETDIST Summary of this function goes here
-%   Detailed explanation goes here
+%GETDIST Gets the distance from the ultrasonic sensor
 dist = obj.brick.UltrasonicDist(obj.nosUltra);
 end
 

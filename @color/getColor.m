@@ -1,6 +1,5 @@
 function color = getColor(obj)
-%GETCOLOR Summary of this function goes here
-%   Detailed explanation goes here
+%GETCOLOR Gets the current sensed color
     color = obj.brick.ColorCode(obj.nosColor);
 end
 

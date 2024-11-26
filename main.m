@@ -4,18 +4,13 @@ InitKeyboard()
 Lift = lift(brick, 'C', 300);
 Ultra = ultrasonic(brick, 4, 20);
 Color = color(brick, 3);
-%Gyro = gyro(brick, 4);
 Drive = drive(brick, 'B', 'D');
 
 speedMultiplier = 1;
 modeFlag = 0;
-tcolor = 3; %yellow = 4
-tMode = 1;
-history = ["move", "move", "move"];
-
-Ultra.getDist()
-Ultra.getDist()
-Ultra.getDist()
+tcolor = 4; %target color
+tMode = 1; %turn direciton
+history = ["move", "move", "move"]; %movement history
 
 while true
     pause(0.1)
@@ -29,7 +24,7 @@ while true
                 case 0
                     [modeFlag, speedMultiplier] = driverControl(speedMultiplier, key, Drive, Lift);
                 case 1
-                    [modeFlag, tMode, history] = autonomous(Drive, Lift, Ultra, Color, tcolor, tMode, history);
+                    [modeFlag, tMode, history] = autonomous(Drive, Ultra, Color, tcolor, tMode, history);
                 case 2
                     Drive.move( 0)
                 case 3

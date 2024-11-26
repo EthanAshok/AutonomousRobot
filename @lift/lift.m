@@ -10,8 +10,11 @@ classdef lift
     
     methods
         function obj = lift(brick, nosLift, liftDeg)
-            %LIFT Construct an instance of this class
-            %   Detailed explanation goes here
+            %Lift Construct an instance of this class
+            %   INPUT
+            %       brick     (Obj)   Brick object
+            %       nosLift  (Char)   Lift sensor port 
+            %       liftDeg (Numeric) Degree amount to actuate lift
             obj.brick = brick;
             obj.nosLift = nosLift;
             obj.liftDeg = liftDeg;

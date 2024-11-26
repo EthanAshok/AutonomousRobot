@@ -1,6 +1,5 @@
 classdef ultrasonic
-    %ULTRASONIC Summary of this class goes here
-    %   Detailed explanation goes here
+    %ULTRASONIC Controls the ultrasonic sensor
     
     properties
         brick
@@ -11,7 +10,10 @@ classdef ultrasonic
     methods
         function obj = ultrasonic(brick, nosUltra, threshold)
             %ULTRASONIC Construct an instance of this class
-            %   Detailed explanation goes here
+            %   INPUT
+            %       brick     (Obj)     Brick object
+            %       nosUltra  (Char)    Ultrasonic sensor port 
+            %       threshold (Numeric) Threshold to sense wall
             obj.brick = brick;
             obj.nosUltra = nosUltra;
             obj.threshold = threshold;

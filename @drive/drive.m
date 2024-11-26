@@ -1,11 +1,6 @@
 
 classdef drive
     %DRIVE Controls robot drivetrain
-    %   Properties
-    %       brick (obj)    brick object
-    %       nosL  (String) left motor port
-    %       nosR  (String) right motor port
-    %TODO: Finish methods
     
     properties
         brick

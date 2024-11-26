@@ -1,6 +1,5 @@
 classdef color
-    %COLOR Summary of this class goes here
-    %   Detailed explanation goes here
+    %COLOR Controls the color sensor
     
     properties
         brick
@@ -10,7 +9,9 @@ classdef color
     methods
         function obj = color(brick, nosColor)
             %COLOR Construct an instance of this class
-            %   Detailed explanation goes here
+            %   INPUT
+            %       brick    (Obj)   Brick object
+            %       nosColor (Char)  Color sensor port 
             obj.brick = brick;
             obj.nosColor = nosColor;
 

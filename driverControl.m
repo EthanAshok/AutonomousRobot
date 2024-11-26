@@ -1,6 +1,10 @@
 function [flag, s] = driverControl(speedMultiplier, key, Drive, Lift)
-%DriveRCONTROL Summary of this function goes here
-%   Detailed explanation goes here
+    %DRIVERCONTROL Controller for manual control of robot
+    %   INPUT
+    %       speedMultiplier (Numeric) Speed to move, -1 to 1
+    %       key             (Char)    key pressed
+    %       Drive           (Obj)     Drive object
+    %       Lift            (Obj)     Lift object
     switch key
             case 'i'
                 switch (speedMultiplier)

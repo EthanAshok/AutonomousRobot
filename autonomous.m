@@ -1,6 +1,12 @@
-function [flag, tMode, history] = autonomous(Drive, Lift, Ultra, Color, tcolor, tMode, history)
-%AUTONOMOUS Summary of this function goes here
-%   Detailed explanation goes here
+function [flag, tMode, history] = autonomous(Drive, Ultra, Color, tColor, tMode, history)
+    %DRIVERCONTROL Controller for manual control of robot
+    %   INPUT
+    %       Drive   (Obj)     Drive object
+    %       Lift    (Obj)     Lift object
+    %       Color   (Obj)     Color object
+    %       tColor  (Numeric) Target color in color code
+    %       tMode   (Numeric) Turn mode
+    %       history (Array)   History of movement
 
     function shiftHistory(action)
         history(1) = history(2);
@@ -24,20 +30,10 @@ function [flag, tMode, history] = autonomous(Drive, Lift, Ultra, Color, tcolor, 
            disp(color);
            if Color.atBlue()
                Drive.move(0);
-               %Drive.brick.playTone(100, 100, 100);
-               %pause(0.2)
-               %Drive.brick.playTone(100, 100, 100);
-               %pause(1)
            elseif Color.atGreen()
                Drive.move(0);
-               %Drive.brick.playTone(100, 100, 100);
-               %pause(0.2)
-               %Drive.brick.playTone(100, 100, 100);
-               %pause(0.2)
-               %Drive.brick.playTone(100, 100, 100);
-               %pause(1)
            end
-           if color == tcolor
+           if color == tColor
                flag = 0;
                history = ["move", "move", "move"];
                return
@@ -57,7 +53,6 @@ function [flag, tMode, history] = autonomous(Drive, Lift, Ultra, Color, tcolor, 
             Drive.move(0)
             pause(0.2)
             flag = 1;
-            %tMode = tMode * -1;
 
             if (history(3) == "turn")
                 if history(2) == "turn"
